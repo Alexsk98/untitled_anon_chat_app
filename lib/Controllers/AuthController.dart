@@ -1,5 +1,6 @@
 import 'package:anon_chat/Screens/HomeScreen.dart';
 import 'package:anon_chat/Screens/Login.dart';
+import 'package:anon_chat/Wrappers/LoginWrapper.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -30,7 +31,11 @@ class AuthController extends GetxController {
 
   void registerUser(String email, String password) async {
     UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password)
-    .catchError((onError) => Get.snackbar("error while creating account", onError.message));
+    .catchError((onError) => Get.snackbar("error while creating account", onError.message, snackPosition: SnackPosition.BOTTOM));
+
+    if (result.user!.uid != "") {
+      Get.offAll(() => LoginWrapper());
+    }
   }
 
 }

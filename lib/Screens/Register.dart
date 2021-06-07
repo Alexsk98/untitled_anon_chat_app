@@ -15,9 +15,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
 
-  final _emailKey = GlobalKey<FormState>();
-  final _passwordKey = GlobalKey<FormState>();
-  final _passwordConfirmKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     AuthController _auth = Get.find<AuthController>(); 
@@ -33,18 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               
               // Email Text Box
               TextFormField(
-                key: _emailKey, 
                 controller: emailController,
-                validator: (value) {
-                  if (value == null) {
-                    return 'please enter your email';
-                  }
-                  else if (value.length < 5)
-                  {
-                    return 'email too short';
-                  }
-                  return null;
-                },
                 decoration: InputDecoration(
                   hintText: 'email',
                   hintStyle: TextStyle(color: primaryBlue),
@@ -62,17 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               
               // Password Text Box
               TextFormField(
-                key: _passwordKey, 
                 controller: passwordController,
-                validator: (value) {
-                  if (passwordController.value.text == null) {
-                    return 'please enter your password';
-                  }
-                  else if (passwordController.value.text != passwordConfirmController.value.text){
-                    return 'passwords do not match';
-                  }
-                  return null;
-                },
                 decoration: InputDecoration(
                   hintText: 'password',
                   hintStyle: TextStyle(color: primaryBlue),
@@ -88,17 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height/40),
               TextFormField(
-                key: _passwordConfirmKey, 
                 controller: passwordConfirmController,
-                validator: (value) {
-                  if (passwordConfirmController.value.text == null) {
-                    return 'please confirm your password';
-                  }
-                  else if(passwordConfirmController.value.text != passwordController.value.text){
-                    return 'passwords do not match';
-                  }
-                  return null;
-                },
                 decoration: InputDecoration(
                   hintText: 'confirm password',
                   hintStyle: TextStyle(color: primaryBlue),
@@ -123,12 +89,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    // if(_emailKey.currentState!.validate() && _passwordKey.currentState!.validate() && _passwordConfirmKey.currentState!.validate())
-                    // {
-                    //   AuthController _auth = AuthController();
-                    //   _auth.registerUser(emailController.text, passwordController.text);
-                    // }
-                    _auth.registerUser(emailController.text, passwordController.text);
+                    if(passwordConfirmController.text == passwordController.text)
+                    {
+                      AuthController _auth = AuthController();
+                      _auth.registerUser(emailController.text, passwordController.text);
+                    }
+                    else
+                    {
+                      Get.snackbar('Registeration Error', 'Passwords do not match', snackPosition: SnackPosition.BOTTOM);
+                    }
+                    
                   }
                 ),
               ),
