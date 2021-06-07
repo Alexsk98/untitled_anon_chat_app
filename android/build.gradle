@@ -1,6 +1,3 @@
-group 'com.example.unnamed_anon'
-version '1.0'
-
 buildscript {
     repositories {
         google()
@@ -12,19 +9,19 @@ buildscript {
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
         jcenter()
     }
 }
 
-apply plugin: 'com.android.library'
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
 
-android {
-    compileSdkVersion 30
-
-    defaultConfig {
-        minSdkVersion 16
-    }
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
