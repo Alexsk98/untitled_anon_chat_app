@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773274425974",
+    "project_id": "untitled-anon-chat-app",
+    "storage_bucket": "untitled-anon-chat-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773274425974:android:c310345a63179c9fbcdd57",
+        "android_client_info": {
+          "package_name": "com.example.anon_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773274425974-r1ut2g03qkubld5ipiuoie5t506kf987.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlr4rwkl5hIfQEV5pDFg5MvkU1DdiJ5kI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773274425974-r1ut2g03qkubld5ipiuoie5t506kf987.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
