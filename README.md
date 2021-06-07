@@ -1,4 +1,4 @@
-# flutter_app
+# anon_chat
 
 A new Flutter application.
 
